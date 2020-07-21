@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  lint-scripts:
+    docker:
+      - image: koalaman/shellcheck-alpine
+    steps:
+      - checkout
+      - run:
+          name: lint
+          command: |
+            shellcheck -x test/build.sh
+            shellcheck -x test/e2e.sh
+            shellcheck -x test/helm-test-e2e.sh
+            shellcheck -x test/repo-sync.sh
+  lint-charts:
+    docker:
+      - image: gcr.io/kubernetes-charts-ci/test-image:v3.4.1
+    steps:
+      - checkout
+      - run:
+          name: lint
+          command: |
+            helm version --client
+            git remote add txomon https://github.com/txomon/helm-charts
+            git fetch txomon master
+            ct lint --config test/ct.yaml
+  publish:
+    docker:
+      - image: gcr.io/kubernetes-charts-ci/test-image:v3.4.1
+    steps:
+      - checkout
+      - run:
+          name: publish
+          command: |
+            helm version --client
+            test/package-charts.sh
+workflows:
+  version: 2
+  lint:
+    jobs:
+      - lint-scripts
+      - lint-charts
+  publish:
+    jobs:
+      - publish

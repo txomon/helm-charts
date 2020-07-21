@@ -1,0 +1,6 @@
+remote: txomon
+target-branch: master
+chart-dirs:
+  - charts
+chart-repos:
+  - txomon=https://raw.githubusercontent.com/txomon/helm-charts/master/repo/

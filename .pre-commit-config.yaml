@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: lint-charts
+        name: Lint charts
+        language: docker_image
+        always_run: true
+        pass_filenames: false
+        entry: quay.io/helmpack/chart-testing ct list-changed --config test/ct.yaml
+      - id: package-charts
+        name: Package charts
+        language: system
+        pass_filenames: false
+        entry: bash test/package-charts.sh
+
