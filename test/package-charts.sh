@@ -1,11 +1,18 @@
 #!/bin/bash
+set -xev
 
-chartsDir="charts/"
 repoDir="repo/"
-
-for d in $(find $chartsDir -mindepth 1 -maxdepth 1 -type d); do
-  echo "Processing $d"
+hasUpdates=false
+echo "Checking for updates in charts"
+for d in $( docker run --rm -v "$(pwd)":/repo -w /repo/ quay.io/helmpack/chart-testing ct list-changed); do
+  echo "Repackaging chart $d"
   helm package -u -d $repoDir "$d"
+  hasUpdates=true
 done
 
-helm repo index $repoDir
+if [[ "true" = "$hasUpdates" ]]; then
+  echo "Rebuilding index"
+  helm repo index $repoDir
+else
+  echo "No updates to the index required"
+fi

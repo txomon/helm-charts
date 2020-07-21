@@ -6,10 +6,11 @@ repos:
         language: docker_image
         always_run: true
         pass_filenames: false
-        entry: quay.io/helmpack/chart-testing ct list-changed --config test/ct.yaml
+        entry: quay.io/helmpack/chart-testing ct lint --config test/ct.yaml
       - id: package-charts
         name: Package charts
         language: system
+        always_run: true
         pass_filenames: false
         entry: bash test/package-charts.sh
 
