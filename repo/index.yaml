@@ -3,7 +3,7 @@ entries:
   common:
   - apiVersion: v1
     appVersion: 0.0.5
-    created: "2020-07-21T14:18:43.284200258+02:00"
+    created: "2020-11-04T15:59:03.857110596+01:00"
     description: Common chartbuilding components and helpers
     digest: ada37a34c2a1d87fa914e94df12187fdc488505240a86067ffa62f9c0da8a624
     home: https://helm.sh
@@ -16,4 +16,15 @@ entries:
     urls:
     - common-0.0.5.tgz
     version: 0.0.5
-generated: "2020-07-21T14:18:43.283708646+02:00"
+  passthrough:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2020-11-04T15:59:03.857390241+01:00"
+    description: A Helm chart for Kubernetes
+    digest: 8c117d7ed07f7a616ccd58ee45b50a1baddc23f733bc606447cd213030fdf851
+    name: passthrough
+    type: application
+    urls:
+    - passthrough-0.1.0.tgz
+    version: 0.1.0
+generated: "2020-11-04T15:59:03.855960083+01:00"

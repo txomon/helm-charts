@@ -1,0 +1,18 @@
+# test1:
+#   apiVersion: v1
+#   kind: Pod
+#   metadata:
+#     name: test
+#   spec:
+#     containers:
+#     - name: test
+#       image: busybox:latest
+# test2:
+#   apiVersion: v1
+#   kind: Pod
+#   metadata:
+#     name: test2
+#   spec:
+#     containers:
+#       - name: test
+#         image: busybox:latest
